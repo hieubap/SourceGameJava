@@ -1,14 +1,17 @@
-package MainPK;
+package Primary;
+
+import java.awt.Color;
 
 import javax.swing.JFrame;
 
 @SuppressWarnings("serial")
-public class main extends JFrame{
+public class WindowGame extends JFrame{
+	public static Color[] colorElement = {Color.red,Color.blue,new Color(0x993300),Color.yellow,new Color(0x9400D3)};
 	int a,b;
 	float c;
 	
-	main(){
-		add(new Player());
+	WindowGame(){
+		add(new Control());
 		
 		setTitle("game phong thu");
 		setSize(1000, 700);
@@ -17,7 +20,7 @@ public class main extends JFrame{
 	}
 
 	public static void main(String[] args) {
-		main m= new main();
+		WindowGame m= new WindowGame();
 		m.setVisible(true);
 		
 	}

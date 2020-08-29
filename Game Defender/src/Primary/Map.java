@@ -1,33 +1,32 @@
-package MainPK;
+package Primary;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 
 @SuppressWarnings("serial")
 public class Map extends JPanel{
+	public static int PIXEL = 30;
 	private int map[][];
 	private Rectangle2D t1,t2,t3,t4,t5;
-	private JButton bt1,bt2;
 	private int w=20,h=11,walk_ennemy;
 	private int attack[];
+	public ArrayList<Integer> way;
 	
 	public Map(int lv) {
 		map = new int[h][w];
 		
 		
-		t1=new Rectangle2D.Float(50f, 600f, 50f, 50f);
-		t2=new Rectangle2D.Float(110f, 600f, 50f, 50f);
-		t3=new Rectangle2D.Float(170f, 600f, 50f, 50f);
-		t4=new Rectangle2D.Float(230f, 600f, 50f, 50f);
-		t5=new Rectangle2D.Float(290f, 600f, 50f, 50f);
-		bt1= new JButton("Map 1");
-		bt2= new JButton("Map 2");
+		t1=new Rectangle2D.Float(40f, 600f, 60f, 50f);
+		t2=new Rectangle2D.Float(110f, 600f, 60f, 50f);
+		t3=new Rectangle2D.Float(180f, 600f, 60f, 50f);
+		t4=new Rectangle2D.Float(250f, 600f, 60f, 50f);
+		t5=new Rectangle2D.Float(320f, 600f, 60f, 50f);
 		
 		
 		if(lv==1) {
@@ -92,44 +91,45 @@ public class Map extends JPanel{
 	}
 	public void paint(Graphics g,int coin) {
 		Graphics2D g2d = (Graphics2D) g.create();
-		g2d.setColor(Color.yellow);
+
+		g2d.setColor(WindowGame.colorElement[0]);
 		g2d.draw(t1);
 		if(coin>9) g2d.fill(t1);
-		g2d.setColor(Color.green);
+		g2d.setColor(WindowGame.colorElement[1]);
 		g2d.draw(t2);
-		if(coin>4) g2d.fill(t2);
-		g2d.setColor(Color.cyan);
+		if(coin>10) g2d.fill(t2);
+		g2d.setColor(WindowGame.colorElement[2]);
 		g2d.draw(t3);
 		if(coin>9) g2d.fill(t3);
-		g2d.setColor(Color.red);
+		g2d.setColor(WindowGame.colorElement[3]);
 		g2d.draw(t4);
-		if(coin>19) g2d.fill(t4);
-		g2d.setColor(Color.gray);
+		if(coin>10) g2d.fill(t4);
+		g2d.setColor(WindowGame.colorElement[4]);
 		g2d.draw(t5);
-		if(coin>29) g2d.fill(t5);
+		if(coin>9) g2d.fill(t5);
 		
 		g2d.setColor(Color.lightGray);
 		g.setColor(Color.black);
 		
-		g.drawString("COIN", 60, 630);
-		g.drawString("GUN", 120, 630);
-		g.drawString("ICE", 185, 630);
-		g.drawString("LAZE", 240, 630);
-		g.drawString("SPACE", 295, 630);
+		g.drawString("FIRE", 57, 630);
+		g.drawString("WATER", 117, 630);
+		g.drawString("EARTH", 190, 630);
+		g.drawString("THUNDER", 252, 630);
+		g.drawString("WIND", 335, 630);
 		
 		
 		for(int i=0;i<h;i++) {
 			for(int j=0;j<w;j++) {
 				//System.out.print(map[i][j]+" ");
 				if(map[i][j]!=0) {
-				g2d.fillRect(50+j*31, 50+i*31, 30, 30);
-				g.drawRect(50+j*31, 50+i*31, 31, 31);
+				g2d.fillRect(50+j*(PIXEL+1), 50+i*(PIXEL+1), PIXEL, PIXEL);
+				g.drawRect(50+j*(PIXEL+1), 50+i*(PIXEL+1), (PIXEL+1), (PIXEL+1));
 				}
 			}
 			//System.out.println();
 		}
-		
 	}
+	
 	public boolean t1contain(int x,int y) {
 		if(t1.contains(x, y)) return true;
 		return false;
